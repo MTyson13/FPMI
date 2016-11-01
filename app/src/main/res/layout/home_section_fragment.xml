@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/homeTopText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="@string/typeName"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonHomeContinue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/homeCourseText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:text="@string/home_continue_button" />
+
+    <EditText
+        android:id="@+id/homeNameInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/homeTopText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:width="200dp"
+        android:inputType=""
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/homeCourseText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/homeNameInput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="@string/chooseCourse"
+        android:textSize="20sp" />
+
+</RelativeLayout>
