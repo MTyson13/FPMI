@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/homeCourseText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="100dp"
         android:text="@string/home_continue_button" />
 
     <EditText
@@ -39,8 +39,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/homeNameInput"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="5dp"
         android:text="@string/chooseCourse"
         android:textSize="20sp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/homeCourseText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
 
 </RelativeLayout>
