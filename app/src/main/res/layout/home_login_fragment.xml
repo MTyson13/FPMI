@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_pic">
 
     <Button
         android:id="@+id/buttonHomeContinue"
@@ -9,9 +10,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/selectCourseDropDown"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp"
-        android:text="@string/home_continue_button"
-        android:onClick="onClick"/>
+        android:layout_marginTop="70dp"
+        android:onClick="onClick"
+        android:text="@string/btnContinue" />
 
     <Spinner
         android:id="@+id/selectDegreeDropDown"
@@ -19,14 +20,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/selectDegree"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="3dp" />
+        android:layout_marginTop="5dp" />
 
     <TextView
         android:id="@+id/typeNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
         android:text="@string/typeName"
         android:textSize="18sp" />
 
@@ -36,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/selectDegreeDropDown"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="15dp"
         android:text="@string/selectSpecialityText"
         android:textSize="18sp" />
 
@@ -46,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/specialityText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="3dp" />
+        android:layout_marginTop="5dp" />
 
     <TextView
         android:id="@+id/selectCourseText"
@@ -54,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/specialityDropDown"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="15dp"
         android:text="@string/selectCourse"
         android:textSize="18sp" />
 
@@ -64,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/selectCourseText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="3dp" />
+        android:layout_marginTop="5dp" />
 
     <EditText
         android:id="@+id/homeNameInput"
@@ -72,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/typeNameText"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
         android:width="100dp"
         android:inputType="text"
         android:textSize="18sp" />
@@ -80,9 +82,9 @@
         android:id="@+id/selectDegree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/selectCourseText"
-        android:layout_alignRight="@+id/selectCourseText"
         android:layout_below="@+id/homeNameInput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
         android:text="@string/selectDegree"
         android:textSize="18sp" />
 

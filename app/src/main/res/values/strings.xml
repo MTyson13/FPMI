@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">FPMI</string>
-    <string name="typeName">Type your name:</string>
-    <string name="chooseCourse">Choose your course:</string>
-    <string name="home_continue_button">Continue</string>
+    <string name="typeName">Type your  first name:</string>
+    <string name="selectDegree">Select degree:</string>
+    <string name="btnContinue">Continue</string>
+    <string name="selectSpecialityText">Select speciality:</string>
+    <string name="selectCourse">Select course:</string>
 </resources>
