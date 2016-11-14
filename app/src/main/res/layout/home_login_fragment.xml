@@ -8,14 +8,14 @@
         android:id="@+id/buttonHomeContinue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/selectCourseDropDown"
+        android:layout_below="@+id/selectCourseSpinner"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
         android:onClick="onClick"
         android:text="@string/btnContinue" />
 
     <Spinner
-        android:id="@+id/selectDegreeDropDown"
+        android:id="@+id/selectDegreeSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/selectDegree"
@@ -35,14 +35,14 @@
         android:id="@+id/specialityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/selectDegreeDropDown"
+        android:layout_below="@+id/selectDegreeSpinner"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:text="@string/selectSpecialityText"
         android:textSize="18sp" />
 
     <Spinner
-        android:id="@+id/specialityDropDown"
+        android:id="@+id/specialitySpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/specialityText"
@@ -53,14 +53,14 @@
         android:id="@+id/selectCourseText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/specialityDropDown"
+        android:layout_below="@id/specialitySpinner"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:text="@string/selectCourse"
         android:textSize="18sp" />
 
     <Spinner
-        android:id="@+id/selectCourseDropDown"
+        android:id="@+id/selectCourseSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/selectCourseText"
