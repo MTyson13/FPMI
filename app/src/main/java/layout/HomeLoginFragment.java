@@ -18,9 +18,8 @@ public class HomeLoginFragment extends Fragment implements AdapterView.OnItemSel
     String[] degree = {"Bachelor", "Magister"};
     String[] bachSpeciality = {"Еngineering Physics", "Applied Mathematics", "Mathematics and Informatics"};
     String[] magisterSpeciality = {"Applied Mathematics"};
-    String[] bachCourse = {"First", "Second", "Third", "Fourth"};
+    String[] bachCourse = {"I", "II", "III", "IV"};
     String[] magisterCourse = {"First"};
-    private Button btnContinue;
     private EditText nameInput;
     private Spinner degreeSpnr, specialitySpnr, courseSpnr;
 
@@ -32,7 +31,7 @@ public class HomeLoginFragment extends Fragment implements AdapterView.OnItemSel
 
         nameInput = (EditText) view.findViewById(R.id.homeNameInput);
 
-        btnContinue = (Button) view.findViewById(R.id.buttonHomeContinue);
+        Button btnContinue = (Button) view.findViewById(R.id.buttonHomeContinue);
 
         degreeSpnr = (Spinner) view.findViewById(R.id.selectDegreeSpinner);
         degreeSpnr.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
@@ -70,15 +69,18 @@ public class HomeLoginFragment extends Fragment implements AdapterView.OnItemSel
         if (checkNameInputIsNull()) {
             nameInput.setError("First name is required");
         } else {
-            //Get username value from home page and display it on menu page
+            //Set username, speciality and course values selected in the spinner by the user
             MenuPageFragment fragment = new MenuPageFragment();
-            Bundle bundle = new Bundle();
-            bundle.putString("username", nameInput.getText().toString());
-            fragment.setArguments(bundle);
+
+            Bundle value = new Bundle();
+            value.putString("username", nameInput.getText().toString());
+            value.putString("speciality", specialitySpnr.getSelectedItem().toString());
+            value.putString("course", courseSpnr.getSelectedItem().toString());
+            fragment.setArguments(value);
 
             //Replace HomeLoginFragment with MenuPageFragment
             FragmentTransaction fTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-            fTransaction.replace(R.id.container, fragment);
+            fTransaction.replace(R.id.container, fragment).addToBackStack("loginTag");
             fTransaction.commit();
         }
     }
@@ -111,4 +113,6 @@ public class HomeLoginFragment extends Fragment implements AdapterView.OnItemSel
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+
 }

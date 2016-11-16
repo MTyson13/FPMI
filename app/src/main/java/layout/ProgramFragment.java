@@ -12,6 +12,11 @@ import android.webkit.WebViewClient;
 import com.martinbachvarov.fpmi.R;
 
 public class ProgramFragment extends Fragment {
+    private static final String FIRST_COURSE_URL = "http://www.tu-sofia.bg/weeklyprogram/2016-2017-zimen/bakalavar/%D0%A4%D0%9F%D0%9C%D0%98-potok-14-%D0%9F%D0%9C-kurs-1.pdf";
+    private static final String SECOND_COURSE_URL = "http://www.tu-sofia.bg/weeklyprogram/2016-2017-zimen/bakalavar/%D0%A4%D0%9F%D0%9C%D0%98-potok-16-kurs-2.pdf";
+    private static final String THIRD_COURSE_URL = "http://www.tu-sofia.bg/weeklyprogram/2016-2017-zimen/bakalavar/%D0%A4%D0%9F%D0%9C%D0%98-potok---kurs-3.pdf";
+    private static final String FOURTH_COURSE_URL = "http://www.tu-sofia.bg/weeklyprogram/2016-2017-zimen/bakalavar/%D0%A4%D0%9F%D0%9C%D0%98-potok---kurs-4.pdf";
+    private String pdf;
     private WebView webView;
 
     @Override
@@ -29,9 +34,17 @@ public class ProgramFragment extends Fragment {
         return view;
     }
 
-    private String setCorrectPdf(){
-        String pdf = "";
-        if ()
+    private String setCorrectPdf() {
+        String course = getArguments().getString("course");
+        if (course.equals("I")) {
+            pdf = FIRST_COURSE_URL;
+        } else if (course.equals("II")) {
+            pdf = SECOND_COURSE_URL;
+        } else if (course.equals("III")) {
+            pdf = THIRD_COURSE_URL;
+        } else if (course.equals("IV")) {
+            pdf = FOURTH_COURSE_URL;
+        }
         return pdf;
     }
 
