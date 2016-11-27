@@ -2,6 +2,7 @@ package layout;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,9 @@ public class NotesFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.cancelNoteBtn:
-
+                FragmentTransaction fTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fTransaction.replace(R.id.container, new MenuPageFragment());
+                fTransaction.commit();
                 break;
 
             default:

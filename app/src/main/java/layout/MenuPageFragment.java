@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.martinbachvarov.fpmi.R;
 
 
-public class MenuPageFragment extends Fragment {
+public class MenuPageFragment extends Fragment implements View.OnClickListener {
     private TextView nameView;
     private static final String HI_MESSAGE = "Hi";
     private static final String ENGINEERING_PHYSICS = "Еngineering Physics";
@@ -31,28 +31,16 @@ public class MenuPageFragment extends Fragment {
         nameView = (TextView) view.findViewById(R.id.nameView);
 
         Button webBtn = (Button) view.findViewById(R.id.specialityBtn);
-        webBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                aboutSpecialityInfo();
-            }
-        });
+        webBtn.setOnClickListener(this);
 
         Button facultyBtn = (Button) view.findViewById(R.id.facultyBtn);
-        facultyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                aboutFacultyInfo();
-            }
-        });
+        facultyBtn.setOnClickListener(this);
 
         Button programBtn = (Button) view.findViewById(R.id.programBtn);
-        programBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkProgram();
-            }
-        });
+        programBtn.setOnClickListener(this);
+
+        Button addNotesButton = (Button) view.findViewById(R.id.addNoteBtn);
+        addNotesButton.setOnClickListener(this);
 
         setNameView();
         return view;
@@ -95,8 +83,42 @@ public class MenuPageFragment extends Fragment {
         fTransaction.commit();
     }
 
+    //On click Add Notes button open Notes fragment
+    private void openNotes() {
+        NotesFragment notesFragment = new NotesFragment();
+
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.container, notesFragment).addToBackStack("notesTag");
+        fragmentTransaction.commit();
+    }
+
     @Override
     public void onResume() {
         super.onResume();
+    }
+
+    //Set on click methods for all buttons
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.specialityBtn:
+                aboutSpecialityInfo();
+                break;
+
+            case R.id.facultyBtn:
+                aboutFacultyInfo();
+                break;
+
+            case R.id.programBtn:
+                checkProgram();
+                break;
+
+            case R.id.addNoteBtn:
+                openNotes();
+                break;
+
+            default:
+                break;
+        }
     }
 }
