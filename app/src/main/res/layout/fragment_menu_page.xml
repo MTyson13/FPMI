@@ -42,10 +42,18 @@
             android:id="@+id/programBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Weekly programs"
             android:layout_below="@+id/facultyBtn"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:text="Add Notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/facultyBtn"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:text="Weekly programs" />
+            android:id="@+id/addNoteBtn" />
 
     </RelativeLayout>
 </ScrollView>

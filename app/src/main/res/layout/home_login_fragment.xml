@@ -81,7 +81,8 @@
             android:layout_marginTop="5dp"
             android:width="100dp"
             android:inputType="text"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:background="@android:color/transparent"/>
 
         <TextView
             android:id="@+id/selectDegree"
