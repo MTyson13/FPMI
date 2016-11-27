@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/note_background"
+    tools:context="layout.NotesFragment">
+
+
+    <Button
+        android:id="@+id/saveNoteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"
+        android:text="Save Note"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/noteText"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_below="@+id/saveNoteBtn"
+        android:layout_marginTop="0dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@color/colorPrimary"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/cancelNoteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/noteText"
+        android:layout_toLeftOf="@+id/saveNoteBtn"
+        android:layout_toStartOf="@+id/saveNoteBtn"
+        android:background="@android:color/transparent"
+        android:text="@string/cancelNote" />
+
+</RelativeLayout>
