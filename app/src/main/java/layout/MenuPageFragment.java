@@ -56,6 +56,13 @@ public class MenuPageFragment extends Fragment implements View.OnClickListener {
                 }
             }
         });
+        myToolbar.setNavigationIcon(getResources().getDrawable(R.drawable.common_google_signin_btn_icon_light_normal));
+        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToMainMenu();
+            }
+        });
 
         Button webBtn = (Button) view.findViewById(R.id.specialityBtn);
         webBtn.setOnClickListener(this);
@@ -116,6 +123,13 @@ public class MenuPageFragment extends Fragment implements View.OnClickListener {
 
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.container, notesFragment).addToBackStack("notesTag");
+        fragmentTransaction.commit();
+    }
+
+    private void backToMainMenu() {
+        HomeLoginFragment homeLoginFragment = new HomeLoginFragment();
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.container, homeLoginFragment).addToBackStack("backToMenu");
         fragmentTransaction.commit();
     }
 

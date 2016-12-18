@@ -1,11 +1,19 @@
 <resources>
     <string name="app_name">FPMI</string>
-    <string name="typeName">Type your  first name:</string>
+    <string name="typeName">Type your first name:</string>
     <string name="selectDegree">Select degree:</string>
     <string name="btnContinue">Continue</string>
     <string name="selectSpecialityText">Select speciality:</string>
     <string name="selectCourse">Select course:</string>
     <string name="cancelNote">CANCEL</string>
+    <string name="toolbarTitle"> My toolbar Title</string>
+
+    <string name="saveNote">Save Note</string>
+
+    <string name="addNotes"> Add notes</string>
+    <string name="aboutFaculty">About faculty</string>
+    <string name="aboutSpeciality">About speciality</string>
+    <string name="weeklyPrograms">Weekly programs</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

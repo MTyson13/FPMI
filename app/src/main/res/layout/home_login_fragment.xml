@@ -16,7 +16,6 @@
             android:layout_below="@+id/selectCourseSpinner"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="70dp"
-            android:onClick="onClick"
             android:text="@string/btnContinue" />
 
         <Spinner

@@ -10,10 +10,11 @@
         android:id="@+id/saveNoteBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:background="@android:color/transparent"
-        android:text="Save Note"
+        android:text="@string/saveNote"
         android:textSize="15sp" />
 
     <EditText
@@ -26,7 +27,7 @@
         android:backgroundTint="@color/colorPrimary"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:textSize="25dp" />
+        android:textSize="25sp" />
 
     <Button
         android:id="@+id/cancelNoteBtn"

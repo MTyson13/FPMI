@@ -1,5 +1,4 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ScrollView01"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -8,15 +7,16 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context="layout.MenuPageFragment">
 
         <TextView
             android:id="@+id/nameView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/myToolbar"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:textSize="20sp" />
 
         <Button
@@ -28,8 +28,8 @@
             android:layout_marginBottom="54dp"
             android:background="@android:color/transparent"
             android:drawableLeft="@drawable/faculty_pic3"
-            android:onClick="onClick"
-            android:text="About Faculty" />
+            android:drawableStart="@drawable/faculty_pic3"
+            android:text="@string/aboutFaculty" />
 
         <Button
             android:id="@+id/specialityBtn"
@@ -40,8 +40,8 @@
             android:layout_marginTop="137dp"
             android:background="@android:color/transparent"
             android:drawableLeft="@drawable/speciality_pic"
-            android:onClick="onClick"
-            android:text="About speciality" />
+            android:drawableStart="@drawable/speciality_pic"
+            android:text="@string/aboutSpeciality" />
 
         <Button
             android:id="@+id/programBtn"
@@ -51,7 +51,8 @@
             android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"
             android:drawableLeft="@drawable/weekly_pic"
-            android:text="Weekly programs" />
+            android:drawableStart="@drawable/weekly_pic"
+            android:text="@string/weeklyPrograms" />
 
         <Button
             android:id="@+id/addNoteBtn"
@@ -61,7 +62,8 @@
             android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"
             android:drawableLeft="@drawable/note_pic"
-            android:text="Add Notes" />
+            android:drawableStart="@drawable/note_pic"
+            android:text="@string/addNotes" />
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/myToolbar"
