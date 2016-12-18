@@ -5,7 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -29,6 +31,31 @@ public class MenuPageFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu_page, container, false);
         nameView = (TextView) view.findViewById(R.id.nameView);
+
+        Toolbar myToolbar = (Toolbar) view.findViewById(R.id.myToolbar);
+        myToolbar.setTitle("My toolbar title");
+        myToolbar.inflateMenu(R.menu.menu_main);
+        myToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.toolbar_notes:
+                        openNotes();
+                        return true;
+                    case R.id.toolbar_faculty:
+                        aboutFacultyInfo();
+                        return true;
+                    case R.id.toolbar_speciality:
+                        aboutSpecialityInfo();
+                        return true;
+                    case R.id.toolbar_programs:
+                        checkProgram();
+                        return true;
+                    default:
+                        return MenuPageFragment.super.onOptionsItemSelected(item);
+                }
+            }
+        });
 
         Button webBtn = (Button) view.findViewById(R.id.specialityBtn);
         webBtn.setOnClickListener(this);
