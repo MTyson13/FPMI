@@ -19,41 +19,47 @@
 
         <Button
             android:id="@+id/facultyBtn"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/specialityBtn"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="54dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/faculty_pic3"
             android:onClick="onClick"
             android:text="About Faculty" />
 
         <Button
             android:id="@+id/specialityBtn"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/nameView"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="137dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/speciality_pic"
             android:onClick="onClick"
             android:text="About speciality" />
 
         <Button
             android:id="@+id/programBtn"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Weekly programs"
             android:layout_below="@+id/facultyBtn"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/weekly_pic"
+            android:text="Weekly programs" />
 
         <Button
-            android:text="Add Notes"
-            android:layout_width="match_parent"
+            android:id="@+id/addNoteBtn"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/facultyBtn"
             android:layout_centerHorizontal="true"
-            android:id="@+id/addNoteBtn" />
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/note_pic"
+            android:text="Add Notes" />
 
     </RelativeLayout>
 </ScrollView>
