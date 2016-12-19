@@ -12,44 +12,4 @@
         android:layout_height="match_parent">
 
     </FrameLayout>
-
-    <!--<Button-->
-    <!--android:text="Button"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignParentBottom="true"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:layout_marginBottom="247dp"-->
-    <!--android:id="@+id/dbBtn" />-->
-
-    <!--<EditText-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:inputType="textPersonName"-->
-    <!--android:ems="10"-->
-    <!--android:layout_alignParentTop="true"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:layout_marginTop="130dp"-->
-    <!--android:id="@+id/dbText" />-->
-
-    <!--<EditText-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:inputType="textPersonName"-->
-    <!--android:ems="10"-->
-    <!--android:layout_below="@+id/dbText"-->
-    <!--android:layout_alignLeft="@+id/dbText"-->
-    <!--android:layout_alignStart="@+id/dbText"-->
-    <!--android:layout_marginTop="36dp"-->
-    <!--android:id="@+id/dbTextSecond" />-->
-
-    <!--<Button-->
-    <!--android:text="Button"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignTop="@+id/dbBtn"-->
-    <!--android:layout_alignLeft="@+id/dbBtn"-->
-    <!--android:layout_alignStart="@+id/dbBtn"-->
-    <!--android:layout_marginTop="60dp"-->
-    <!--android:id="@+id/selectAllBtn" />-->
 </RelativeLayout>

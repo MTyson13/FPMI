@@ -14,12 +14,15 @@ import com.martinbachvarov.fpmi.R;
 public class NotesFragment extends Fragment implements View.OnClickListener {
 
     private EditText noteText;
+    private EditText userText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notes, container, false);
         noteText = (EditText) view.findViewById(R.id.noteText);
+
+        getNoteFromDBAndPopulate();
 
         Button saveNoteBtn = (Button) view.findViewById(R.id.saveNoteBtn);
         saveNoteBtn.setOnClickListener(this);
@@ -34,6 +37,10 @@ public class NotesFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.saveNoteBtn:
                 //save note into DB
+                Note note = new Note();
+                note.setNoteText(noteText.getText().toString());
+                //TODO: check if is successfully saved///
+                saveNoteToDB(note);
                 break;
 
             case R.id.cancelNoteBtn:
@@ -45,5 +52,22 @@ public class NotesFragment extends Fragment implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    private long saveNoteToDB(Note note) {
+        DBAdapter dbAdapter = new DBAdapter(getContext());
+        long saveResult = dbAdapter.insertNote(note);
+
+        return saveResult;
+    }
+
+    private void getNoteFromDBAndPopulate() {
+        DBAdapter dbAdapter = new DBAdapter(getContext());
+        Note note = dbAdapter.getNote("Martin");
+
+        String userName = note.getUser();
+        String noteText = note.getNoteText();
+
+        this.noteText.setText(noteText);
     }
 }

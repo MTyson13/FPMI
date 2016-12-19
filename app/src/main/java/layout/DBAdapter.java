@@ -12,7 +12,7 @@ import android.util.Log;
  * Created by martin.bachvarov on 11/18/2016.
  */
 
-public class DBAdapter {
+public class DBAdapter extends SQLiteOpenHelper {
 
     public static final String KEY_ROWID = "_id";
     public static final String KEY_NOTE = "note";
@@ -21,61 +21,58 @@ public class DBAdapter {
     private static final String DATABASE_NAME = "MyDB";
     private static final String DATABASE_TABLE = "notes";
     private static final int DATABASE_VERSION = 1;
+
     private static final String DATABASE_CREATE =
-            "create table notes (_id integer primary key autoincrement, "
+            "create table if not exists notes (_id integer primary key autoincrement, "
                     + "note text not null, user text not null);";
+
+    private static final String GET_NOTE_QUERY = "SELECT * FROM NOTE Where user =?";
     private final Context context;
-    private DatabaseHelper DBHelper;
-    private SQLiteDatabase db;
+    private static SQLiteDatabase db;
 
     public DBAdapter(Context ctx) {
+        super(ctx, DATABASE_CREATE, null, DATABASE_VERSION);
         this.context = ctx;
-        DBHelper = new DatabaseHelper(context);
+        db = this.getWritableDatabase();
     }
-
-    private static class DatabaseHelper extends SQLiteOpenHelper {
-        DatabaseHelper(Context context) {
-            super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        }
-
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-            try {
-                db.execSQL(DATABASE_CREATE);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
-                    + newVersion + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS notes");
-            onCreate(db);
-        }
-    }
-
-
-    //---opens the database---
-    public DBAdapter open() throws SQLException {
-        db = DBHelper.getWritableDatabase();
-        return this;
-    }
-
 
     //---closes the database---
-    public void close() {
-        DBHelper.close();
+    public static void closeDB() {
+        if(db != null) {
+            db.close();
+            db = null;
+        }
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        try {
+            db.execSQL(DATABASE_CREATE);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        Log.w(Constants.DB_LOG_TAG, "Upgrading database from version " + oldVersion + " to "
+                + newVersion + ", which will destroy all old data");
+        db.execSQL("DROP TABLE IF EXISTS notes");
+        onCreate(db);
     }
 
 
     //---insert a contact into the database---
-    public long insertNote(String note, String user) {
+    public long insertNote(Note note) {
         ContentValues initialValues = new ContentValues();
-        initialValues.put(KEY_NOTE, note);
-        initialValues.put(KEY_USER, user);
-        return db.insert(DATABASE_TABLE, null, initialValues);
+        initialValues.put(KEY_NOTE, note.getNoteText());
+      initialValues.put(KEY_USER, "Martin");
+
+        long result = db.insert(DATABASE_TABLE, null, initialValues);
+
+        Log.d(Constants.DB_LOG_TAG, "status:" + result + " noteTExt:" + note.getNoteText());
+        return result;
     }
 
 
@@ -89,18 +86,21 @@ public class DBAdapter {
     public Cursor getAllNotes() {
         return db.query(DATABASE_TABLE, new String[]{KEY_ROWID, KEY_NOTE, KEY_USER},
                 null, null, null, null, null);
+
     }
 
 
     //---retrieves a particular contact---
-    public Cursor getNote(long rowId) throws SQLException {
-        Cursor mCursor = db.query(true, DATABASE_TABLE, new String[]{KEY_ROWID,
-                        KEY_NOTE, KEY_USER}, KEY_ROWID + "=" + rowId, null,
-                null, null, null, null);
-        if (mCursor != null) {
-            mCursor.moveToFirst();
+    public Note getNote(String userName) throws SQLException {
+       Cursor cursor = db.rawQuery(GET_NOTE_QUERY + "Martin", null);
+        Note note = null;
+        if(cursor.getCount() > 0) {
+            note = new Note();
+            note.setNoteText(cursor.getString(1));
+            note.setUser(cursor.getString(2));
         }
-        return mCursor;
+
+        return note;
     }
 
 
