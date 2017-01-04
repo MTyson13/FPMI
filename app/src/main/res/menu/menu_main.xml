@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.MainActivity">
+
+    <group>
+        <item
+            android:id="@+id/toolbar_notes"
+            android:title="@string/addNotes"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/toolbar_faculty"
+            android:title="@string/aboutFaculty"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/toolbar_speciality"
+            android:title="@string/aboutSpeciality"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/toolbar_programs"
+            android:title="@string/weeklyPrograms"
+            app:showAsAction="never" />
+    </group>
+</menu>
