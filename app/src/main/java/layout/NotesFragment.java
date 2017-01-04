@@ -2,6 +2,7 @@ package layout;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,6 @@ import com.martinbachvarov.fpmi.R;
 public class NotesFragment extends Fragment implements View.OnClickListener {
 
     private EditText noteText;
-    private EditText userText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -22,7 +22,7 @@ public class NotesFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_notes, container, false);
         noteText = (EditText) view.findViewById(R.id.noteText);
 
-        getNoteFromDBAndPopulate();
+//        getNoteFromDBAndPopulate();
 
         Button saveNoteBtn = (Button) view.findViewById(R.id.saveNoteBtn);
         saveNoteBtn.setOnClickListener(this);
@@ -44,9 +44,7 @@ public class NotesFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.cancelNoteBtn:
-                FragmentTransaction fTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fTransaction.replace(R.id.container, new MenuPageFragment());
-                fTransaction.commit();
+                backToPreviousFragment();
                 break;
 
             default:
@@ -61,13 +59,19 @@ public class NotesFragment extends Fragment implements View.OnClickListener {
         return saveResult;
     }
 
-    private void getNoteFromDBAndPopulate() {
-        DBAdapter dbAdapter = new DBAdapter(getContext());
-        Note note = dbAdapter.getNote("Martin");
-
-        String userName = note.getUser();
-        String noteText = note.getNoteText();
-
-        this.noteText.setText(noteText);
+    //Back to the previous fragment on click
+    private void backToPreviousFragment(){
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        fm.popBackStack();
     }
+
+//    private void getNoteFromDBAndPopulate() {
+//        DBAdapter dbAdapter = new DBAdapter(getContext());
+//        Note note = dbAdapter.getNote("Martin");
+//
+//        String userName = note.getUser();
+//        String noteText = note.getNoteText();
+//
+//        this.noteText.setText(noteText);
+//    }
 }

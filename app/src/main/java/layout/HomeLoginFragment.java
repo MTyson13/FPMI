@@ -15,14 +15,9 @@ import android.widget.Spinner;
 import com.martinbachvarov.fpmi.R;
 
 public class HomeLoginFragment extends Fragment implements AdapterView.OnItemSelectedListener {
-    String[] degree = {"Bachelor", "Magister"};
-    String[] bachSpeciality = {"Еngineering Physics", "Applied Mathematics", "Mathematics and Informatics"};
-    String[] magisterSpeciality = {"Applied Mathematics"};
-    String[] bachCourse = {"I", "II", "III", "IV"};
-    String[] magisterCourse = {"First"};
+
     private EditText nameInput;
     private Spinner degreeSpnr, specialitySpnr, courseSpnr;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,7 +31,7 @@ public class HomeLoginFragment extends Fragment implements AdapterView.OnItemSel
         degreeSpnr = (Spinner) view.findViewById(R.id.selectDegreeSpinner);
         degreeSpnr.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
         ArrayAdapter<String> degreeAdapter = new ArrayAdapter<String>(this.getActivity(),
-                android.R.layout.simple_spinner_item, degree);
+                android.R.layout.simple_spinner_item, Constants.DEGREE_DROPDOWN);
         degreeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         degreeSpnr.setAdapter(degreeAdapter);
 
@@ -49,7 +44,7 @@ public class HomeLoginFragment extends Fragment implements AdapterView.OnItemSel
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFragment();
+                openMenuPage();
             }
         });
 
@@ -65,7 +60,7 @@ public class HomeLoginFragment extends Fragment implements AdapterView.OnItemSel
         }
     }
 
-    private void openFragment() {
+    private void openMenuPage() {
         if (checkNameInputIsNull()) {
             nameInput.setError("First name is required");
         } else {
@@ -80,7 +75,9 @@ public class HomeLoginFragment extends Fragment implements AdapterView.OnItemSel
 
             //Replace HomeLoginFragment with MenuPageFragment
             FragmentTransaction fTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-            fTransaction.replace(R.id.container, fragment).addToBackStack("loginTag");
+            //Set animation while switching between fragments
+//            fTransaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+            fTransaction.replace(R.id.container, fragment).addToBackStack("loginFragment");
             fTransaction.commit();
         }
     }
@@ -91,19 +88,19 @@ public class HomeLoginFragment extends Fragment implements AdapterView.OnItemSel
         specialitySpnr.setEnabled(true);
         courseSpnr.setEnabled(true);
         if (degreeSpnr.getSelectedItem().equals("Bachelor")) {
-            ArrayAdapter<String> specialityData = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, bachSpeciality);
+            ArrayAdapter<String> specialityData = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, Constants.BACH_SPECIALITY_DROPDOWN);
             specialityData.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             specialitySpnr.setAdapter(specialityData);
 
-            ArrayAdapter<String> courseData = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, bachCourse);
+            ArrayAdapter<String> courseData = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, Constants.BACH_COURSE_DROPDOWN);
             courseData.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             courseSpnr.setAdapter(courseData);
         } else if (degreeSpnr.getSelectedItem().equals("Magister")) {
-            ArrayAdapter<String> specialityData = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, magisterSpeciality);
+            ArrayAdapter<String> specialityData = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, Constants.MAGISTER_SPECIALITY_DROPDOWN);
             specialityData.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             specialitySpnr.setAdapter(specialityData);
 
-            ArrayAdapter<String> courseData = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, magisterCourse);
+            ArrayAdapter<String> courseData = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, Constants.MAGISTER_COURSE_DROPDOWN);
             courseData.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             courseSpnr.setAdapter(courseData);
         }

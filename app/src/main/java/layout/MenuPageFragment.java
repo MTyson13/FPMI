@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -18,13 +19,13 @@ import com.martinbachvarov.fpmi.R;
 
 public class MenuPageFragment extends Fragment implements View.OnClickListener {
     private TextView nameView;
-    private static final String HI_MESSAGE = "Hi";
-    private static final String ENGINEERING_PHYSICS = "Еngineering Physics";
-    private static final String APPLIED_MATHEMATICS = "Applied Mathmematics";
-    private static final String MATH_AND_INFORM = "Mathematics and Informatics";
-    private static final String PHYSICS_INFO = "http://www.tu-sofia.bg/specialties/preview/641";
-    private static final String APPLIED_MATH_INFO = "http://www.tu-sofia.bg/specialties/preview/638";
-    private static final String APPLIED_MATH_INFORMATIC_INFO = "http://www.tu-sofia.bg/specialties/preview/737";
+//    private static final String HI_MESSAGE = "Hi";
+//    private static final String ENGINEERING_PHYSICS = "Еngineering Physics";
+//    private static final String APPLIED_MATHEMATICS = "Applied Mathmematics";
+//    private static final String MATH_AND_INFORM = "Mathematics and Informatics";
+//    private static final String PHYSICS_INFO = "http://www.tu-sofia.bg/specialties/preview/641";
+//    private static final String APPLIED_MATH_INFO = "http://www.tu-sofia.bg/specialties/preview/638";
+//    private static final String APPLIED_MATH_INFORMATIC_INFO = "http://www.tu-sofia.bg/specialties/preview/737";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,11 +83,11 @@ public class MenuPageFragment extends Fragment implements View.OnClickListener {
 
     private void setNameView() {
         String username = getArguments().getString("username");
-        nameView.setText(HI_MESSAGE + ", " + username);
+        nameView.setText(Constants.HI_MESSAGE + ", " + username);
     }
 
     private void aboutFacultyInfo() {
-        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.tu-sofia.bg/faculties/read/29"));
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.ABOUT_FACULTY_INFO));
         startActivity(i);
     }
 
@@ -94,12 +95,12 @@ public class MenuPageFragment extends Fragment implements View.OnClickListener {
     private void aboutSpecialityInfo() {
         String speciality = getArguments().getString("speciality");
         Intent brows = new Intent();
-        if (speciality.equals(ENGINEERING_PHYSICS)) {
-            brows = new Intent(Intent.ACTION_VIEW, Uri.parse(PHYSICS_INFO));
-        } else if (speciality.equals(APPLIED_MATHEMATICS)) {
-            brows = new Intent(Intent.ACTION_VIEW, Uri.parse(APPLIED_MATH_INFO));
-        } else if (speciality.equals(MATH_AND_INFORM)) {
-            brows = new Intent(Intent.ACTION_VIEW, Uri.parse(APPLIED_MATH_INFORMATIC_INFO));
+        if (speciality.equals(Constants.ENGINEERING_PHYSICS)) {
+            brows = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.PHYSICS_INFO));
+        } else if (speciality.equals(Constants.APPLIED_MATHEMATICS)) {
+            brows = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.APPLIED_MATH_INFO));
+        } else if (speciality.equals(Constants.MATH_AND_INFORM)) {
+            brows = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.APPLIED_MATH_INFORMATIC_INFO));
         }
         startActivity(brows);
     }
@@ -113,7 +114,7 @@ public class MenuPageFragment extends Fragment implements View.OnClickListener {
         programPage.setArguments(value);
 
         FragmentTransaction fTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fTransaction.replace(R.id.container, programPage).addToBackStack("menuTag");
+        fTransaction.replace(R.id.container, programPage).addToBackStack("menuFragment");
         fTransaction.commit();
     }
 
@@ -122,15 +123,13 @@ public class MenuPageFragment extends Fragment implements View.OnClickListener {
         NotesFragment notesFragment = new NotesFragment();
 
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container, notesFragment).addToBackStack("notesTag");
+        fragmentTransaction.replace(R.id.container, notesFragment).addToBackStack("notesFragment");
         fragmentTransaction.commit();
     }
 
     private void backToMainMenu() {
-        HomeLoginFragment homeLoginFragment = new HomeLoginFragment();
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container, homeLoginFragment).addToBackStack("backToMenu");
-        fragmentTransaction.commit();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        fm.popBackStack();
     }
 
     @Override

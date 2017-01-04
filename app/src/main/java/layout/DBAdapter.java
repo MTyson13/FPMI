@@ -16,17 +16,16 @@ public class DBAdapter extends SQLiteOpenHelper {
 
     public static final String KEY_ROWID = "_id";
     public static final String KEY_NOTE = "note";
-    public static final String KEY_USER = "user";
     private static final String TAG = "DBAdapter";
     private static final String DATABASE_NAME = "MyDB";
     private static final String DATABASE_TABLE = "notes";
     private static final int DATABASE_VERSION = 1;
 
     private static final String DATABASE_CREATE =
-            "create table if not exists notes (_id integer primary key autoincrement, "
-                    + "note text not null, user text not null);";
+            "create table if not exists notes(_id integer primary key autoincrement, "
+                    + "note text not null);";
 
-    private static final String GET_NOTE_QUERY = "SELECT * FROM NOTE Where user =?";
+    private static final String GET_NOTE_QUERY = "SELECT * FROM NOTE";
     private final Context context;
     private static SQLiteDatabase db;
 
@@ -38,7 +37,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 
     //---closes the database---
     public static void closeDB() {
-        if(db != null) {
+        if (db != null) {
             db.close();
             db = null;
         }
@@ -67,7 +66,6 @@ public class DBAdapter extends SQLiteOpenHelper {
     public long insertNote(Note note) {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_NOTE, note.getNoteText());
-      initialValues.put(KEY_USER, "Martin");
 
         long result = db.insert(DATABASE_TABLE, null, initialValues);
 
@@ -84,7 +82,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 
     //---retrieves all the contacts---
     public Cursor getAllNotes() {
-        return db.query(DATABASE_TABLE, new String[]{KEY_ROWID, KEY_NOTE, KEY_USER},
+        return db.query(DATABASE_TABLE, new String[]{KEY_ROWID, KEY_NOTE},
                 null, null, null, null, null);
 
     }
@@ -92,12 +90,11 @@ public class DBAdapter extends SQLiteOpenHelper {
 
     //---retrieves a particular contact---
     public Note getNote(String userName) throws SQLException {
-       Cursor cursor = db.rawQuery(GET_NOTE_QUERY + "Martin", null);
+        Cursor cursor = db.rawQuery(GET_NOTE_QUERY + "Martin", null);
         Note note = null;
-        if(cursor.getCount() > 0) {
+        if (cursor.getCount() > 0) {
             note = new Note();
             note.setNoteText(cursor.getString(1));
-            note.setUser(cursor.getString(2));
         }
 
         return note;
@@ -108,7 +105,6 @@ public class DBAdapter extends SQLiteOpenHelper {
     public boolean updateNote(long rowId, String name, String email) {
         ContentValues args = new ContentValues();
         args.put(KEY_NOTE, name);
-        args.put(KEY_USER, email);
         return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }
 }
