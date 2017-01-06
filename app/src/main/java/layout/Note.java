@@ -5,14 +5,31 @@ package layout;
  */
 
 public class Note {
-    private String user; //Can be separeted object
-    private String noteText;
+
+    private String _noteText;
+    private int _id;
+
+    public Note() {
+
+    }
+
+    public Note(String noteText) {
+        this._noteText = noteText;
+    }
 
     public String getNoteText() {
-        return noteText;
+        return _noteText;
     }
 
     public void setNoteText(String noteText) {
-        this.noteText = noteText;
+        this._noteText = noteText;
+    }
+
+    public int getNoteId() {
+        return _id;
+    }
+
+    public void setNoteId(int id) {
+        this._id = id;
     }
 }

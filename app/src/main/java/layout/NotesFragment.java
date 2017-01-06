@@ -3,7 +3,6 @@ package layout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ public class NotesFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_notes, container, false);
         noteText = (EditText) view.findViewById(R.id.noteText);
 
-//        getNoteFromDBAndPopulate();
+        getNoteFromDBAndPopulate();
 
         Button saveNoteBtn = (Button) view.findViewById(R.id.saveNoteBtn);
         saveNoteBtn.setOnClickListener(this);
@@ -39,8 +38,8 @@ public class NotesFragment extends Fragment implements View.OnClickListener {
                 //save note into DB
                 Note note = new Note();
                 note.setNoteText(noteText.getText().toString());
-                //TODO: check if is successfully saved///
                 saveNoteToDB(note);
+                backToPreviousFragment();
                 break;
 
             case R.id.cancelNoteBtn:
@@ -60,18 +59,13 @@ public class NotesFragment extends Fragment implements View.OnClickListener {
     }
 
     //Back to the previous fragment on click
-    private void backToPreviousFragment(){
+    private void backToPreviousFragment() {
         FragmentManager fm = getActivity().getSupportFragmentManager();
         fm.popBackStack();
     }
 
-//    private void getNoteFromDBAndPopulate() {
-//        DBAdapter dbAdapter = new DBAdapter(getContext());
-//        Note note = dbAdapter.getNote("Martin");
-//
-//        String userName = note.getUser();
-//        String noteText = note.getNoteText();
-//
-//        this.noteText.setText(noteText);
-//    }
+    private void getNoteFromDBAndPopulate() {
+        DBAdapter dbAdapter = new DBAdapter(getContext());
+        noteText.setText(dbAdapter.getNote());
+    }
 }

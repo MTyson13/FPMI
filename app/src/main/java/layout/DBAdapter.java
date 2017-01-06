@@ -14,39 +14,27 @@ import android.util.Log;
 
 public class DBAdapter extends SQLiteOpenHelper {
 
-    public static final String KEY_ROWID = "_id";
-    public static final String KEY_NOTE = "note";
-    private static final String TAG = "DBAdapter";
-    private static final String DATABASE_NAME = "MyDB";
-    private static final String DATABASE_TABLE = "notes";
     private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "notes.db";
+    private static final String NOTES_TABLE = "newnotesNew";
+    public static final String COLUMN_ROWID = "_id";
+    public static final String COLUMN_NOTE = "note";
+    private static final String CREATE_DB_QUERY = "CREATE TABLE " + NOTES_TABLE + "(" + COLUMN_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT " + COLUMN_NOTE + " TEXT " + ");";
+    private static final String GET_NOTE_QUERY = "SELECT * FROM " + NOTES_TABLE + " ORDER BY " + COLUMN_ROWID + " DESC LIMIT 1;";
 
-    private static final String DATABASE_CREATE =
-            "create table if not exists notes(_id integer primary key autoincrement, "
-                    + "note text not null);";
-
-    private static final String GET_NOTE_QUERY = "SELECT * FROM NOTE";
     private final Context context;
     private static SQLiteDatabase db;
 
     public DBAdapter(Context ctx) {
-        super(ctx, DATABASE_CREATE, null, DATABASE_VERSION);
+        super(ctx, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = ctx;
         db = this.getWritableDatabase();
-    }
-
-    //---closes the database---
-    public static void closeDB() {
-        if (db != null) {
-            db.close();
-            db = null;
-        }
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
-            db.execSQL(DATABASE_CREATE);
+            db.execSQL(CREATE_DB_QUERY);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -57,54 +45,49 @@ public class DBAdapter extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.w(Constants.DB_LOG_TAG, "Upgrading database from version " + oldVersion + " to "
                 + newVersion + ", which will destroy all old data");
-        db.execSQL("DROP TABLE IF EXISTS notes");
+        db.execSQL("DROP TABLE IF EXISTS " + NOTES_TABLE);
         onCreate(db);
     }
 
-
-    //---insert a contact into the database---
+    //---insert a note into the database---
     public long insertNote(Note note) {
-        ContentValues initialValues = new ContentValues();
-        initialValues.put(KEY_NOTE, note.getNoteText());
+        ContentValues vlaues = new ContentValues();
+        vlaues.put(COLUMN_NOTE, note.getNoteText());
 
-        long result = db.insert(DATABASE_TABLE, null, initialValues);
+        long result = db.insert(NOTES_TABLE, null, vlaues);
 
-        Log.d(Constants.DB_LOG_TAG, "status:" + result + " noteTExt:" + note.getNoteText());
+        Log.d(Constants.DB_LOG_TAG, "status:" + result + " noteText:" + note.getNoteText());
         return result;
     }
 
-
-    //---deletes a particular contact---
+    //---deletes a particular note---
     public boolean deleteNote(long rowId) {
-        return db.delete(DATABASE_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
+        return db.delete(NOTES_TABLE, COLUMN_ROWID + "=" + rowId, null) > 0;
     }
 
+    //---retrieves a particular note---
+    public String getNote() throws SQLException {
+        String noteString;
+        Cursor cursor = db.rawQuery(GET_NOTE_QUERY, null);
+        cursor.moveToFirst();
 
-    //---retrieves all the contacts---
-    public Cursor getAllNotes() {
-        return db.query(DATABASE_TABLE, new String[]{KEY_ROWID, KEY_NOTE},
-                null, null, null, null, null);
+        noteString = cursor.getString(cursor.getColumnIndex("note"));
 
+        return noteString;
     }
 
-
-    //---retrieves a particular contact---
-    public Note getNote(String userName) throws SQLException {
-        Cursor cursor = db.rawQuery(GET_NOTE_QUERY + "Martin", null);
-        Note note = null;
-        if (cursor.getCount() > 0) {
-            note = new Note();
-            note.setNoteText(cursor.getString(1));
+    //---closes the database---
+    public static void closeDB() {
+        if (db != null) {
+            db.close();
+            db = null;
         }
-
-        return note;
     }
 
-
-    //---updates a contact---
+    //---updates a note---
     public boolean updateNote(long rowId, String name, String email) {
         ContentValues args = new ContentValues();
-        args.put(KEY_NOTE, name);
-        return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
+        args.put(COLUMN_NOTE, name);
+        return db.update(NOTES_TABLE, args, COLUMN_ROWID + "=" + rowId, null) > 0;
     }
 }
