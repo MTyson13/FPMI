@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.martinbachvarov.fpmi.R;
 
@@ -38,7 +39,8 @@ public class NotesFragment extends Fragment implements View.OnClickListener {
                 //save note into DB
                 Note note = new Note();
                 note.setNoteText(noteText.getText().toString());
-                saveNoteToDB(note);
+                DBAdapter dbAdapter = new DBAdapter(getContext());
+                dbAdapter.addNoteToTheDB(note);
                 backToPreviousFragment();
                 break;
 
@@ -54,7 +56,7 @@ public class NotesFragment extends Fragment implements View.OnClickListener {
     private long saveNoteToDB(Note note) {
         DBAdapter dbAdapter = new DBAdapter(getContext());
         long saveResult = dbAdapter.insertNote(note);
-
+        Toast.makeText(getContext(), "Successfully saved", Toast.LENGTH_SHORT).show();
         return saveResult;
     }
 

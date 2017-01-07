@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Created by martin.bachvarov on 11/18/2016.
@@ -17,10 +18,11 @@ public class DBAdapter extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "notes.db";
     private static final String NOTES_TABLE = "newnotesNew";
-    public static final String COLUMN_ROWID = "_id";
-    public static final String COLUMN_NOTE = "note";
+    private static final String COLUMN_ROWID = "_id";
+    private static final String COLUMN_NOTE = "note";
     private static final String CREATE_DB_QUERY = "CREATE TABLE " + NOTES_TABLE + "(" + COLUMN_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT " + COLUMN_NOTE + " TEXT " + ");";
-    private static final String GET_NOTE_QUERY = "SELECT * FROM " + NOTES_TABLE + " ORDER BY " + COLUMN_ROWID + " DESC LIMIT 1;";
+    private static final String GET_NOTE_QUERY = "SELECT * FROM " + NOTES_TABLE + " ORDER BY " + COLUMN_ROWID + " ASC LIMIT 1;";
+    private static final String IS_RECORD_EXIST = "SELECT * FROM " + NOTES_TABLE + " ORDER BY " + COLUMN_ROWID;
 
     private final Context context;
     private static SQLiteDatabase db;
@@ -76,18 +78,30 @@ public class DBAdapter extends SQLiteOpenHelper {
         return noteString;
     }
 
+    //---updates a note---
+    public boolean updateNote(Note note) {
+        ContentValues args = new ContentValues();
+        args.put(COLUMN_NOTE, note.getNoteText());
+        return db.update(NOTES_TABLE, args, COLUMN_ROWID + "= 1", null) > 0;
+    }
+
+    public void addNoteToTheDB(Note note) {
+        Cursor c = db.rawQuery(IS_RECORD_EXIST, null);
+        if (c.getCount() <= 0) {
+            insertNote(note);
+            c.close();
+        } else {
+            updateNote(note);
+            c.close();
+        }
+        Toast.makeText(context, "Successfully saved", Toast.LENGTH_SHORT).show();
+    }
+
     //---closes the database---
     public static void closeDB() {
         if (db != null) {
             db.close();
             db = null;
         }
-    }
-
-    //---updates a note---
-    public boolean updateNote(long rowId, String name, String email) {
-        ContentValues args = new ContentValues();
-        args.put(COLUMN_NOTE, name);
-        return db.update(NOTES_TABLE, args, COLUMN_ROWID + "=" + rowId, null) > 0;
     }
 }
