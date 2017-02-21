@@ -75,8 +75,6 @@ public class HomeLoginFragment extends Fragment implements AdapterView.OnItemSel
 
             //Replace HomeLoginFragment with MenuPageFragment
             FragmentTransaction fTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-            //Set animation while switching between fragments
-//            fTransaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
             fTransaction.replace(R.id.container, fragment).addToBackStack("loginFragment");
             fTransaction.commit();
         }

@@ -2,7 +2,7 @@
     android:id="@+id/ScrollView01"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/menu_pic">
+    android:background="@drawable/menu_new">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -19,52 +19,6 @@
             android:layout_marginTop="10dp"
             android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/facultyBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/specialityBtn"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="54dp"
-            android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/faculty_pic3"
-            android:drawableStart="@drawable/faculty_pic3"
-            android:text="@string/aboutFaculty" />
-
-        <Button
-            android:id="@+id/specialityBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/nameView"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="137dp"
-            android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/speciality_pic"
-            android:drawableStart="@drawable/speciality_pic"
-            android:text="@string/aboutSpeciality" />
-
-        <Button
-            android:id="@+id/programBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/facultyBtn"
-            android:layout_centerHorizontal="true"
-            android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/weekly_pic"
-            android:drawableStart="@drawable/weekly_pic"
-            android:text="@string/weeklyPrograms" />
-
-        <Button
-            android:id="@+id/addNoteBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/facultyBtn"
-            android:layout_centerHorizontal="true"
-            android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/note_pic"
-            android:drawableStart="@drawable/note_pic"
-            android:text="@string/addNotes" />
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/myToolbar"
             android:layout_width="match_parent"
@@ -72,6 +26,52 @@
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/AppTheme.Patient" />
+
+        <Button
+            android:id="@+id/addNoteBtn"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="228dp"
+            android:background="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/facultyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="180dp"
+            android:layout_marginTop="120dp"
+            android:width="100dp"
+            android:height="65dp"
+            android:background="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/specialityBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="300dp"
+            android:width="95dp"
+            android:height="70dp"
+            android:background="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/programBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="265dp"
+            android:width="110dp"
+            android:height="70dp"
+            android:background="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/cameraBtn"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginLeft="35dp"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="175dp" />
 
     </RelativeLayout>
 </ScrollView>

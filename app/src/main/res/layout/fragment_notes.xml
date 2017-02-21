@@ -2,19 +2,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/note_background"
+    android:background="@drawable/note_new"
     tools:context="layout.NotesFragment">
 
 
     <Button
         android:id="@+id/saveNoteBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
         android:background="@android:color/transparent"
-        android:text="@string/saveNote"
         android:textSize="15sp" />
 
     <EditText
@@ -22,21 +21,22 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_below="@+id/saveNoteBtn"
-        android:layout_marginTop="0dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="17dp"
         android:background="@android:color/transparent"
         android:backgroundTint="@color/colorPrimary"
         android:ems="10"
+        android:gravity="top|left"
         android:inputType="textMultiLine"
         android:textSize="25sp" />
 
     <Button
         android:id="@+id/cancelNoteBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="72dp"
+        android:layout_height="60dp"
         android:layout_above="@+id/noteText"
-        android:layout_toLeftOf="@+id/saveNoteBtn"
-        android:layout_toStartOf="@+id/saveNoteBtn"
-        android:background="@android:color/transparent"
-        android:text="@string/cancelNote" />
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent" />
 
 </RelativeLayout>

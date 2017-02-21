@@ -19,13 +19,6 @@ import com.martinbachvarov.fpmi.R;
 
 public class MenuPageFragment extends Fragment implements View.OnClickListener {
     private TextView nameView;
-//    private static final String HI_MESSAGE = "Hi";
-//    private static final String ENGINEERING_PHYSICS = "Еngineering Physics";
-//    private static final String APPLIED_MATHEMATICS = "Applied Mathmematics";
-//    private static final String MATH_AND_INFORM = "Mathematics and Informatics";
-//    private static final String PHYSICS_INFO = "http://www.tu-sofia.bg/specialties/preview/641";
-//    private static final String APPLIED_MATH_INFO = "http://www.tu-sofia.bg/specialties/preview/638";
-//    private static final String APPLIED_MATH_INFORMATIC_INFO = "http://www.tu-sofia.bg/specialties/preview/737";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,7 +27,7 @@ public class MenuPageFragment extends Fragment implements View.OnClickListener {
         nameView = (TextView) view.findViewById(R.id.nameView);
 
         Toolbar myToolbar = (Toolbar) view.findViewById(R.id.myToolbar);
-        myToolbar.setTitle("My toolbar title");
+        myToolbar.setTitle("F P M I");
         myToolbar.inflateMenu(R.menu.menu_main);
         myToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -76,6 +69,9 @@ public class MenuPageFragment extends Fragment implements View.OnClickListener {
 
         Button addNotesButton = (Button) view.findViewById(R.id.addNoteBtn);
         addNotesButton.setOnClickListener(this);
+
+        Button cameraBtn = (Button) view.findViewById(R.id.cameraBtn);
+        cameraBtn.setOnClickListener(this);
 
         setNameView();
         return view;
@@ -132,6 +128,11 @@ public class MenuPageFragment extends Fragment implements View.OnClickListener {
         fm.popBackStack();
     }
 
+    private void openCamera() {
+        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        startActivity(intent);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -155,6 +156,10 @@ public class MenuPageFragment extends Fragment implements View.OnClickListener {
 
             case R.id.addNoteBtn:
                 openNotes();
+                break;
+
+            case R.id.cameraBtn:
+                openCamera();
                 break;
 
             default:
