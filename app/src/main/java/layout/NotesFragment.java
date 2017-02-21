@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.martinbachvarov.fpmi.R;
 
+import java.util.EmptyStackException;
+
 public class NotesFragment extends Fragment implements View.OnClickListener {
 
     private EditText noteText;
@@ -68,6 +70,11 @@ public class NotesFragment extends Fragment implements View.OnClickListener {
 
     private void getNoteFromDBAndPopulate() {
         DBAdapter dbAdapter = new DBAdapter(getContext());
-        noteText.setText(dbAdapter.getNote());
+        try {
+            noteText.setText(dbAdapter.getNote());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
