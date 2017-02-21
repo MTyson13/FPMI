@@ -36,13 +36,13 @@ public class ProgramFragment extends Fragment {
 
     private String setCorrectPdf() {
         String course = getArguments().getString("course");
-        if (course.equals("I")) {
+        if (course.equals("I Course")) {
             pdf = FIRST_COURSE_URL;
-        } else if (course.equals("II")) {
+        } else if (course.equals("II Course")) {
             pdf = SECOND_COURSE_URL;
-        } else if (course.equals("III")) {
+        } else if (course.equals("III Course")) {
             pdf = THIRD_COURSE_URL;
-        } else if (course.equals("IV")) {
+        } else if (course.equals("IV Course")) {
             pdf = FOURTH_COURSE_URL;
         }
         return pdf;
