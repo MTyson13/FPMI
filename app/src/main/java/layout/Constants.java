@@ -17,6 +17,6 @@ public class Constants {
     public static final String[] DEGREE_DROPDOWN = {"Bachelor", "Magister"};
     public static final String[] BACH_SPECIALITY_DROPDOWN = {"Еngineering Physics", "Applied Mathematics", "Mathematics and Informatics"};
     public static final String[] MAGISTER_SPECIALITY_DROPDOWN = {"Applied Mathematics"};
-    public static final String[] BACH_COURSE_DROPDOWN = {"I", "II", "III", "IV"};
-    public static final String[] MAGISTER_COURSE_DROPDOWN = {"First"};
+    public static final String[] BACH_COURSE_DROPDOWN = {"I Course", "II Course", "III Course", "IV Course"};
+    public static final String[] MAGISTER_COURSE_DROPDOWN = {"I Course"};
 }

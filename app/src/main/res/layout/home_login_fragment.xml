@@ -10,11 +10,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="130dp"
         android:width="130dp"
         android:background="@android:color/transparent"
         android:inputType="text"
-        android:textColor="#FF008080"
+        android:textColor="#FF6600"
         android:textSize="25sp" />
 
     <Spinner
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/homeNameInput"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp" />
+        android:layout_marginTop="70dp" />
 
     <Spinner
         android:id="@+id/selectCourseSpinner"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/specialitySpinner"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp" />
+        android:layout_marginTop="65dp" />
 
     <Spinner
         android:id="@+id/specialitySpinner"
@@ -41,7 +41,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/selectDegreeSpinner"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp" />
+        android:layout_marginTop="65dp" />
 
     <Button
         android:id="@+id/buttonHomeContinue"
